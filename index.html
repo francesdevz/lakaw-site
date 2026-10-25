@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Plan your Camotes Islands trip: ferry schedules, stays, motorbike rentals, island tours and itineraries.">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
+<title>Lakaw Camotes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: luxury-travel UI. Inset rounded photo hero with glass panels, bento destination grid, horizontal stay rail, dark departure board, giant serif wordmark footer */
+:root{
+  --paper:#f2f4f3; --surface:#ffffff; --ink:#0c1a17; --muted:#61716d; --line:#e1e6e4;
+  --pine:#0f3d38; --pine-2:#165249; --sand:#d6b476; --sand-ink:#2a1e0c; --heart:#e5604a; --ok:#1f8f5a;
+  --glass:rgba(255,255,255,.14); --glass-line:rgba(255,255,255,.28);
+  --display:"Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --body:"Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"Geist Mono", ui-monospace, Menlo, monospace;
+  --r-lg:32px; --r:22px; --shadow:0 30px 60px -35px rgba(12,26,23,.45);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0a1110; --surface:#121b19; --ink:#edf2f0; --muted:#97a7a3; --line:#20302c;
+  --pine:#163f39; --pine-2:#1d5048; --sand:#dfc088; --sand-ink:#24190a; --heart:#f07a64; --ok:#4cc68a;
+  --shadow:0 30px 60px -35px rgba(0,0,0,.85); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0a1110; --surface:#121b19; --ink:#edf2f0; --muted:#97a7a3; --line:#20302c;
+  --pine:#163f39; --pine-2:#1d5048; --sand:#dfc088; --sand-ink:#24190a; --heart:#f07a64; --ok:#4cc68a;
+  --shadow:0 30px 60px -35px rgba(0,0,0,.85); color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;line-height:1;letter-spacing:-.015em}
+h1 em,h2 em,h3 em{font-style:italic}
+button,input,select,textarea{font:inherit;color:inherit}
+img{display:block;max-width:100%}
+:focus-visible{outline:2px solid var(--sand);outline-offset:3px}
+.wrap{max-width:1280px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.photo{object-fit:cover;width:100%;height:100%}
+
+/* nav */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:8;background:color-mix(in srgb,var(--paper) 82%,transparent);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4)}
+.bar{display:flex;align-items:center;gap:16px;padding-block:14px}
+.logo{font-family:var(--display);font-size:30px;color:var(--ink);text-decoration:none;line-height:1;display:flex;align-items:center;gap:8px}
+.logo svg{width:26px;height:26px}
+nav.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0;justify-content:center;background:var(--surface);border-radius:999px;padding:4px;border:1px solid var(--line);max-width:fit-content;margin-inline:auto}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs button{background:none;border:0;color:var(--muted);padding:8px 15px;border-radius:999px;cursor:pointer;white-space:nowrap;font-weight:500;font-size:14px;transition:color .2s,background .2s}
+nav.tabs button:hover{color:var(--ink)}
+nav.tabs button[aria-current="true"]{background:var(--ink);color:var(--paper)}
+.trip-btn{background:var(--pine);color:#fff;border:0;border-radius:999px;padding:6px 6px 6px 16px;cursor:pointer;font-weight:600;font-size:14px;display:flex;gap:10px;align-items:center;white-space:nowrap}
+.trip-btn b{background:var(--sand);color:var(--sand-ink);border-radius:999px;min-width:28px;height:28px;display:grid;place-items:center;font-size:13px}
+
+/* hero */
+.hero{position:relative;border-radius:var(--r-lg);overflow:hidden;min-height:clamp(560px,78vh,780px);display:grid;color:#fff;isolation:isolate}
+.hero>img{position:absolute;inset:0;z-index:-2}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(5,15,13,.35) 0%,rgba(5,15,13,0) 30%,rgba(5,15,13,.15) 55%,rgba(5,15,13,.78) 100%)}
+.hero-grid{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;padding:clamp(20px,4vw,48px)}
+.hero-top{position:absolute;top:clamp(18px,3vw,32px);left:clamp(20px,4vw,48px);right:clamp(20px,4vw,48px);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.glass{background:var(--glass);border:1px solid var(--glass-line);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3)}
+.pill{display:inline-flex;gap:8px;align-items:center;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:500}
+.pill .dot{width:7px;height:7px;border-radius:50%;background:#7ff0b4;box-shadow:0 0 0 4px rgba(127,240,180,.25)}
+.hero h1{font-size:clamp(56px,10vw,148px);max-width:9ch;letter-spacing:-.03em}
+.hero h1 em{color:#f3dcae}
+.hero-copy{display:grid;gap:22px}
+.hero-copy p{font-size:clamp(15px,1.6vw,18px);max-width:44ch;color:rgba(255,255,255,.86);margin:0}
+.hero-side{display:grid;gap:12px;width:min(300px,100%)}
+.mini{border-radius:20px;padding:16px;display:grid;gap:4px}
+.mini small{font-size:12px;color:rgba(255,255,255,.75);text-transform:uppercase;letter-spacing:.12em}
+.mini b{font-family:var(--display);font-weight:400;font-size:40px;line-height:1}
+.mini span{font-size:13px;color:rgba(255,255,255,.85)}
+.avatars{display:flex;align-items:center;gap:10px;font-size:13px}
+.avatars i{width:30px;height:30px;border-radius:50%;border:2px solid #fff;margin-left:-10px;background-size:cover;background-position:center}
+.avatars i:first-child{margin-left:0}
+.search{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;gap:6px;border-radius:24px;padding:8px;max-width:760px}
+.search label{display:grid;gap:2px;padding:8px 14px;border-radius:16px;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.75);min-width:0;transition:background .2s}
+.search label:hover{background:rgba(255,255,255,.1)}
+.search select,.search input{border:0;background:none;font-size:15px;font-weight:600;color:#fff;padding:0;text-transform:none;letter-spacing:0;min-width:0;width:100%;color-scheme:dark}
+.search select option{color:#0c1a17}
+.search .btn{border-radius:18px;padding:0 26px}
+
+/* buttons */
+.btn{background:var(--ink);color:var(--paper);border:0;border-radius:999px;padding:12px 22px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:transform .2s,opacity .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn.sand{background:var(--sand);color:var(--sand-ink)}
+.btn.light{background:#fff;color:#0c1a17}
+.btn.line{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.line:hover{border-color:var(--ink)}
+.btn.sm{padding:8px 16px;font-size:14px}
+.arrow{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#fff;color:#0c1a17;border:0;cursor:pointer;flex-shrink:0;transition:transform .25s}
+.arrow svg{width:16px;height:16px}
+
+main{padding-block:16px 96px}
+section[data-view]{display:grid;gap:clamp(56px,8vw,96px)}
+.block{display:grid;gap:28px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;text-transform:uppercase;letter-spacing:.16em;font-size:12px;font-weight:600;color:var(--muted)}
+.eyebrow::before{content:"";width:18px;height:1px;background:currentColor}
+.sechead{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+.sechead h2{font-size:clamp(40px,6vw,72px);margin-top:12px;max-width:14ch}
+.sechead p{color:var(--muted);max-width:42ch;margin:0}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stats div{padding:28px 20px;display:grid;gap:4px}
+.stats div+div{border-left:1px solid var(--line)}
+.stats b{font-family:var(--display);font-weight:400;font-size:clamp(40px,5vw,60px);line-height:1}
+.stats span{color:var(--muted);font-size:14px}
+
+/* bento */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:240px;gap:16px}
+.tile{position:relative;border-radius:var(--r);overflow:hidden;color:#fff;cursor:pointer;border:0;padding:0;text-align:left;isolation:isolate;background:var(--pine)}
+.tile img{position:absolute;inset:0;z-index:-2;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.tile::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(5,15,13,0) 40%,rgba(5,15,13,.75))}
+.tile .in{position:absolute;inset:0;padding:18px;display:flex;flex-direction:column;justify-content:space-between}
+.tile .tt{display:flex;justify-content:space-between;align-items:end;gap:10px}
+.tile h3{font-size:clamp(26px,2.6vw,34px)}
+.tile p{margin:6px 0 0;font-size:13px;color:rgba(255,255,255,.82);max-width:34ch}
+.tile:hover img{transform:scale(1.06)}
+.tile:hover .arrow{transform:rotate(-45deg)}
+.t-big{grid-column:span 2;grid-row:span 2}
+.t-tall{grid-row:span 2}
+.t-wide{grid-column:span 2}
+
+/* rail cards */
+.rail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(270px,1fr);gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px 20px}
+.card{display:flex;flex-direction:column;gap:14px;scroll-snap-align:start;min-width:0}
+.card .ph{position:relative;aspect-ratio:4/5;max-width:100%;border-radius:var(--r);overflow:hidden;background:var(--line)}
+.card .ph img{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.card:hover .ph img{transform:scale(1.05)}
+.card .ph .tl{position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;align-items:start;gap:8px;color:#fff}
+.card .ph .bl{position:absolute;bottom:12px;left:12px;right:12px;display:flex;justify-content:space-between;align-items:end;color:#fff}
+.feat{background:var(--sand);color:var(--sand-ink);font-size:11px;font-weight:700;padding:6px 10px;border-radius:999px;letter-spacing:.08em;text-transform:uppercase}
+.heart{width:38px;height:38px;border-radius:50%;border:1px solid var(--glass-line);background:rgba(255,255,255,.18);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff;cursor:pointer;display:grid;place-items:center;margin-left:auto}
+.heart svg{width:18px;height:18px}
+.heart[aria-pressed="true"]{background:#fff;color:var(--heart)}
+.heart[aria-pressed="true"] svg{fill:currentColor}
+.card .info{display:grid;gap:4px}
+.card .row1{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.card h3{font-size:26px}
+.rate{font-size:13.5px;font-weight:600;white-space:nowrap}
+.rate::before{content:"★ ";color:var(--sand)}
+.meta{color:var(--muted);font-size:14px}
+.price{font-size:15px}
+.price b{font-weight:600}
+.cardfoot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:6px}
+
+/* filters */
+.filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.filters button{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:8px 16px;cursor:pointer;font-weight:500;font-size:14px}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.filters select{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:9px 14px;font-weight:500}
+
+/* split experience */
+.split{display:grid;grid-template-columns:1.1fr 1fr;gap:20px;align-items:stretch}
+.split .big{position:relative;border-radius:var(--r-lg);overflow:hidden;min-height:520px}
+.split .big .tagx{position:absolute;left:18px;bottom:18px;right:18px;border-radius:20px;padding:16px 18px;color:#fff;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.split .big .tagx b{font-family:var(--display);font-weight:400;font-size:28px;display:block;line-height:1.05}
+.split .side{background:var(--surface);border-radius:var(--r-lg);padding:clamp(22px,3vw,40px);display:grid;gap:22px;align-content:start;border:1px solid var(--line)}
+.split .side h2{font-size:clamp(36px,4.6vw,60px)}
+.xlist{display:grid}
+.xitem{display:grid;grid-template-columns:72px 1fr auto;gap:16px;align-items:center;padding:14px 0;border-top:1px solid var(--line);cursor:pointer;background:none;border-left:0;border-right:0;border-bottom:0;text-align:left}
+.xitem img{width:72px;height:72px;border-radius:16px}
+.xitem b{font-family:var(--display);font-weight:400;font-size:24px;display:block;line-height:1.1}
+.xitem .pr{font-weight:600;white-space:nowrap}
+
+/* departure board */
+.board{background:#0a1412;border-radius:var(--r-lg);padding:clamp(18px,3vw,32px);color:#e8f0ee;display:grid;gap:18px}
+.board-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.board-head h3{font-family:var(--display);font-size:clamp(30px,4vw,44px);color:#fff}
+.clock{font-family:var(--mono);font-size:14px;color:#9fb5b0;display:flex;align-items:center;gap:8px}
+.clock::before{content:"";width:8px;height:8px;border-radius:50%;background:#7ff0b4;box-shadow:0 0 0 4px rgba(127,240,180,.2)}
+.routes{display:flex;gap:6px;flex-wrap:wrap}
+.routes button{background:transparent;border:1px solid #23332f;color:#a9bfba;border-radius:999px;padding:7px 14px;font-size:13px;cursor:pointer}
+.routes button[aria-pressed="true"]{background:#f3dcae;color:#1d150a;border-color:#f3dcae}
+.boardscroll{overflow-x:auto}
+.board table{width:100%;border-collapse:collapse;min-width:640px;font-variant-numeric:tabular-nums}
+.board th{font-size:11px;letter-spacing:.14em;color:#6f8681;text-align:left;padding:10px 14px;font-weight:500;text-transform:uppercase;border-bottom:1px solid #1d2a27}
+.board td{padding:16px 14px;border-bottom:1px solid #16211f;font-size:14px}
+.board tr:last-child td{border-bottom:0}
+.flap{display:inline-flex;gap:3px;align-items:center}
+.flap b{background:#16211f;border-radius:6px;padding:4px 7px;color:#f3dcae;font-family:var(--mono);font-size:20px;font-weight:600;position:relative}
+.flap b::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:#0a1412}
+.flap span{color:#f3dcae;font-family:var(--mono)}
+.st{font-size:12px;font-weight:600;padding:5px 11px;border-radius:999px;white-space:nowrap}
+.st.next{background:#f3dcae;color:#1d150a}
+.st.on{background:rgba(127,240,180,.12);color:#7ff0b4}
+.st.gone{color:#5d726d}
+.note{font-size:13px;color:var(--muted)}
+
+/* page head */
+.pagehead{position:relative;border-radius:var(--r-lg);overflow:hidden;min-height:clamp(300px,42vh,420px);display:grid;align-content:end;padding:clamp(20px,4vw,48px);color:#fff;isolation:isolate}
+.pagehead img{position:absolute;inset:0;z-index:-2}
+.pagehead::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(5,15,13,.1) 20%,rgba(5,15,13,.75))}
+.pagehead .eyebrow{color:rgba(255,255,255,.8)}
+.pagehead h2{font-size:clamp(52px,8vw,110px);margin-top:12px;letter-spacing:-.03em}
+.pagehead p{color:rgba(255,255,255,.85);max-width:52ch;margin:10px 0 0;font-size:17px}
+
+/* map */
+.mapwrap{display:grid;grid-template-columns:1.2fr 1fr;gap:20px}
+.mapcard{background:var(--pine);border-radius:var(--r-lg);padding:18px;position:relative;overflow:hidden}
+.mapcard svg{width:100%;height:auto;display:block}
+.isle{fill:#e9dcbc;stroke:rgba(255,255,255,.5);stroke-width:1}
+.isle-g{fill:#6b9a6a;opacity:.55}
+.isle-label{font-family:var(--display);font-size:15px;fill:#fff;letter-spacing:.12em}
+.sea-label{font-size:10px;fill:#9fc6bd;font-family:var(--body);letter-spacing:.08em}
+.pin{cursor:pointer}
+.pin circle.o{fill:rgba(243,220,174,.35)}
+.pin circle.i{fill:#f3dcae;stroke:#0f3d38;stroke-width:2}
+.pin.on circle.i,.pin:hover circle.i,.pin:focus circle.i{fill:#e5604a}
+@media (prefers-reduced-motion:no-preference){.pin circle.o{animation:pulse 2.4s ease-out infinite;transform-box:fill-box;transform-origin:center}}
+@keyframes pulse{0%{transform:scale(.6);opacity:1}100%{transform:scale(2);opacity:0}}
+.spotcard{border-radius:var(--r-lg);overflow:hidden;position:relative;min-height:380px;color:#fff;isolation:isolate;display:grid;align-content:end}
+.spotcard img{position:absolute;inset:0;z-index:-2}
+.spotcard::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,transparent 35%,rgba(5,15,13,.8))}
+.spotcard .body{padding:24px;display:grid;gap:8px}
+.spotcard h3{font-size:44px}
+.spotcard p{margin:0;color:rgba(255,255,255,.86);max-width:40ch}
+
+/* reviews */
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.review{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:26px;display:grid;gap:18px;align-content:space-between}
+.review q{font-family:var(--display);font-size:26px;line-height:1.2;quotes:none}
+.who{display:flex;gap:12px;align-items:center;font-size:14px}
+.who i{width:44px;height:44px;border-radius:50%;background-size:cover;background-position:center}
+.who span{display:block;color:var(--muted);font-size:13px}
+
+/* cta */
+.cta{position:relative;border-radius:var(--r-lg);overflow:hidden;color:#fff;isolation:isolate;padding:clamp(28px,6vw,80px);display:grid;gap:22px;justify-items:start}
+.cta img{position:absolute;inset:0;z-index:-2}
+.cta::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(5,15,13,.85),rgba(5,15,13,.25))}
+.cta h2{font-size:clamp(44px,6.5vw,88px);max-width:12ch}
+.cta p{margin:0;max-width:46ch;color:rgba(255,255,255,.85)}
+
+/* itinerary */
+.timeline{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.day{background:var(--surface);border-radius:var(--r);overflow:hidden;border:1px solid var(--line)}
+.day .ph{height:180px;position:relative}
+.day .ph h3{position:absolute;left:18px;bottom:14px;color:#fff;font-size:34px;text-shadow:0 2px 20px rgba(0,0,0,.4)}
+.day .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(5,15,13,.6))}
+.day .ph h3{z-index:1}
+.day ol{margin:0;padding:22px;list-style:none;display:grid}
+.day li{display:grid;grid-template-columns:54px 14px 1fr;gap:12px;font-size:14.5px;align-items:start}
+.day li b{font-family:var(--mono);font-size:13px;color:var(--muted);font-weight:500;padding-top:2px}
+.day li i{width:10px;height:10px;border-radius:50%;border:2px solid var(--sand);margin-top:6px;position:relative}
+.day li:not(:last-child) i::after{content:"";position:absolute;left:2px;top:12px;width:1px;height:32px;background:var(--line)}
+.day li span{padding-bottom:18px}
+
+/* guides article */
+.article{max-width:820px;display:grid;gap:20px}
+.article .ph{aspect-ratio:16/9;max-width:100%;border-radius:var(--r-lg);overflow:hidden}
+.article h2{font-size:clamp(44px,6vw,76px)}
+.article p{font-size:18px;max-width:64ch;margin:0;line-height:1.65}
+.slot{border:1px dashed var(--line);border-radius:16px;padding:16px;font-size:13px;color:var(--muted)}
+
+/* business */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.plan{background:var(--surface);border-radius:var(--r);padding:28px;display:flex;flex-direction:column;gap:16px;border:1px solid var(--line)}
+.plan.hot{background:var(--pine);color:#eef4f2;border-color:var(--pine)}
+.plan.hot .meta{color:#a9c4be}
+.plan h3{font-size:34px}
+.plan ul{margin:0;padding:0;list-style:none;font-size:14.5px;display:grid;gap:10px}
+.plan li{display:flex;gap:10px}
+.plan li::before{content:"";width:16px;height:16px;border-radius:50%;background:var(--sand);flex-shrink:0;margin-top:3px;mask:radial-gradient(circle,#000 30%,transparent 32%);-webkit-mask:radial-gradient(circle,#000 30%,transparent 32%)}
+.plan .amount{font-family:var(--display);font-size:56px;line-height:1}
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px);background:#0a1412;color:#e8f0ee;border-radius:var(--r-lg);padding:clamp(22px,4vw,48px)}
+.calc label{display:grid;gap:8px;font-size:14px}
+.calc label span{display:flex;justify-content:space-between;color:#a9bfba}
+.calc output{font-family:var(--mono);color:#f3dcae}
+.calc input[type=range]{width:100%;accent-color:#f3dcae}
+.calc .total{font-family:var(--display);font-size:clamp(60px,9vw,110px);color:#fff;line-height:.95;font-variant-numeric:tabular-nums}
+.calc .lines{display:grid;gap:10px;font-size:14px;font-variant-numeric:tabular-nums}
+.calc .lines div{display:flex;justify-content:space-between;border-bottom:1px solid #1d2a27;padding-bottom:10px}
+.calc .bars{display:flex;height:10px;border-radius:999px;overflow:hidden;background:#16211f;gap:2px}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:16px;background:var(--surface);border-radius:var(--r-lg);padding:clamp(20px,3vw,36px);border:1px solid var(--line)}
+.form label{display:grid;gap:6px;font-size:13px;font-weight:500;color:var(--muted)}
+.form input,.form select,.form textarea{border:1px solid var(--line);background:var(--paper);border-radius:14px;padding:12px 14px;color:var(--ink);min-width:0;font-size:15px}
+.form .full{grid-column:1/-1}
+
+/* drawer */
+.scrim{position:fixed;inset:0;background:rgba(5,12,11,.5);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:20}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(480px,100%);background:var(--surface);z-index:21;display:flex;flex-direction:column;overflow-y:auto}
+.drawer .dph{height:260px;flex-shrink:0;position:relative}
+.drawer .dbody{padding:24px max(24px,env(safe-area-inset-right,0px)) calc(28px + env(safe-area-inset-bottom,0px)) 24px;display:grid;gap:16px}
+.drawer h2{font-size:42px}
+.drawer .x{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:max(14px,env(safe-area-inset-right,0px));background:#fff;color:#0c1a17;border:0;border-radius:50%;width:40px;height:40px;cursor:pointer;font-size:20px;z-index:2;box-shadow:0 6px 20px rgba(0,0,0,.2)}
+.drawer .form{padding:0;border:0;background:none}
+.sum{display:grid;gap:8px;font-variant-numeric:tabular-nums;font-size:14px;background:var(--paper);padding:16px;border-radius:16px}
+.sum div{display:flex;justify-content:space-between}
+.sum .tot{font-weight:700;font-size:17px;border-top:1px solid var(--line);padding-top:10px}
+.booking{display:grid;grid-template-columns:76px 1fr;gap:14px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:14px}
+.booking img{width:76px;height:76px;border-radius:16px}
+.booking div{display:grid;gap:2px;font-size:14px;min-width:0}
+.ref{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:12px 22px;border-radius:999px;font-weight:600;z-index:30;box-shadow:var(--shadow)}
+
+footer{padding-block:48px 24px;border-top:1px solid var(--line)}
+.foot{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:28px;font-size:14px}
+.foot h4{margin:0 0 10px;font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:600}
+.foot a{display:block;color:var(--ink);text-decoration:none;padding:3px 0;cursor:pointer}
+.wordmark{font-family:var(--display);font-size:clamp(90px,22vw,320px);line-height:.8;letter-spacing:-.04em;margin-top:40px;color:var(--ink);white-space:nowrap;overflow:hidden}
+.wordmark em{color:var(--sand)}
+.fine{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:12.5px;margin-top:16px}
+
+@media (max-width:980px){
+  .bento{grid-template-columns:repeat(2,1fr);grid-auto-rows:220px}
+  .split,.mapwrap,.calc{grid-template-columns:1fr}
+  .reviews,.plans{grid-template-columns:1fr}
+  .hero-grid{grid-template-columns:1fr}
+  .hero-side{grid-template-columns:1fr 1fr;width:100%}
+  nav.tabs{display:none}
+  .bar{justify-content:space-between}
+  .foot{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .stats div:nth-child(3){border-left:0}
+  .stats div:nth-child(n+3){border-top:1px solid var(--line)}
+}
+.mnav{display:none;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:10px}
+.mnav::-webkit-scrollbar{display:none}
+.mnav button{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:7px 14px;white-space:nowrap;font-size:13.5px;cursor:pointer}
+.mnav button[aria-current="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+@media (max-width:980px){.mnav{display:flex}}
+@media (max-width:640px){
+  .search{grid-template-columns:1fr 1fr}
+  .search .btn{grid-column:1/-1;padding:14px}
+  .search label:first-child{grid-column:1/-1}
+  .form{grid-template-columns:1fr}
+  .bento{grid-template-columns:1fr;grid-auto-rows:260px}
+  .t-big,.t-wide{grid-column:auto}.t-big,.t-tall{grid-row:auto}
+  .hero-side{grid-template-columns:1fr}
+  .hero-side .mini:last-child{display:none}
+}
+@media (prefers-reduced-motion:reduce){.tile img,.card .ph img,.btn,.arrow{transition:none}.tile:hover img,.card:hover .ph img{transform:none}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap bar">
+    <a class="logo" href="#home" data-go="home" aria-label="Lakaw home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="var(--pine)"/><path d="M6 19c3-2 5-2 7 0s4 2 7 0 5-2 6 0" stroke="var(--sand)" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="20" cy="11" r="3.2" fill="var(--sand)"/></svg>
+      Lakaw
+    </a>
+    <nav class="tabs" aria-label="Sections">
+      <button data-go="home">Explore</button>
+      <button data-go="stay">Stays</button>
+      <button data-go="rides">Experiences</button>
+      <button data-go="ferries">Ferries</button>
+      <button data-go="trips">Itineraries</button>
+      <button data-go="guides">Journal</button>
+      <button data-go="business">For hosts</button>
+    </nav>
+    <button class="trip-btn" id="myTrip">My trip <b id="tripCount">0</b></button>
+  </div>
+  <div class="wrap mnav" id="mnav"></div>
+</header>
+
+<main class="wrap">
+
+<!-- HOME -->
+<section data-view="home">
+  <div class="hero">
+    <img class="photo" src="img/hero.jpg" alt="Rocky shoreline with clear turquoise water and palm trees">
+    <div class="hero-top">
+      <span class="pill glass"><span class="dot"></span>Seas calm today · 30°C</span>
+      <span class="pill glass">Pacijan · Poro · Ponson · Tulang</span>
+    </div>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <h1>Find your <em>lost horizon.</em></h1>
+        <p>Handpicked stays, island experiences and real ferry times for the Camotes Islands. Book everything before you sail.</p>
+        <form class="search glass" id="heroSearch">
+          <label>Where<select id="hsArea"><option value="">All islands</option><option>San Francisco</option><option>Poro</option><option>Tudela</option><option>Pilar</option></select></label>
+          <label>Check-in<input type="date" id="hsDate"></label>
+          <label>Guests<select id="hsGuests"><option>1 guest</option><option selected>2 guests</option><option>3–4 guests</option><option>5+ guests</option></select></label>
+          <button class="btn light" type="submit">Search
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+        </form>
+      </div>
+      <div class="hero-side">
+        <div class="mini glass"><small>Next RoRo · Danao</small><b id="nextFerry">--:--</b><span>Arrives Consuelo port in about 2 hours</span></div>
+        <div class="mini glass">
+          <div class="avatars"><i style="background-image:url(img/traveler.jpg)"></i><i style="background-image:url(img/pier.jpg)"></i><i style="background-image:url(img/terrace.jpg)"></i><span>2,400+ travelers planned trips here last month</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div><b>4</b><span>Islands to explore</span></div>
+    <div><b>40+</b><span>Local hosts and drivers</span></div>
+    <div><b>4.8</b><span>Average guest rating</span></div>
+    <div><b>2h</b><span>By ferry from Danao</span></div>
+  </div>
+
+  <div class="block">
+    <div class="sechead">
+      <div><div class="eyebrow">Destinations</div><h2>Places that <em>stay</em> with you</h2></div>
+      <p>White-sand bays, cave pools and a guitar-shaped lake, all within an hour's ride of each other.</p>
+    </div>
+    <div class="bento" id="bento"></div>
+  </div>
+
+  <div class="block">
+    <div class="sechead">
+      <div><div class="eyebrow">Featured stays</div><h2>Sleep by the <em>sea</em></h2></div>
+      <button class="btn line sm" data-go="stay">View all stays →</button>
+    </div>
+    <div class="rail" id="homeStays"></div>
+  </div>
+
+  <div class="split">
+    <div class="big">
+      <img class="photo" src="img/scooter.jpg" alt="Scooter riding down a palm-lined island road">
+      <div class="tagx glass"><div><span style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.8">From ₱500 / day</span><b>Motorbike, waiting at the port</b></div><button class="arrow" data-book="r1" aria-label="Book a motorbike"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+    </div>
+    <div class="side">
+      <div class="eyebrow">Experiences</div>
+      <h2>Ride, swim, <em>sail.</em></h2>
+      <p class="meta" style="margin:0;font-size:15.5px">Local drivers and boatmen meet you at the port with your name on a sign. Pay on arrival.</p>
+      <div class="xlist" id="xlist"></div>
+      <div><button class="btn sm" data-go="rides">All experiences →</button></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="sechead">
+      <div><div class="eyebrow">Ferries</div><h2>Leaving <em>soon</em></h2></div>
+      <button class="btn line sm" data-go="ferries">Full schedule →</button>
+    </div>
+    <div class="board" id="homeBoard"></div>
+  </div>
+
+  <div class="block">
+    <div class="sechead"><div><div class="eyebrow">Island map</div><h2>Four islands, <em>one</em> trip</h2></div></div>
+    <div class="mapwrap">
+      <div class="mapcard">
+        <svg viewBox="0 0 420 300" role="img" aria-label="Map of the Camotes Islands with tourist spots">
+          <text x="16" y="24" class="sea-label">CAMOTES SEA</text>
+          <text x="286" y="290" class="sea-label">TO ORMOC →</text>
+          <text x="12" y="290" class="sea-label">← TO DANAO, CEBU</text>
+          <ellipse class="isle" cx="92" cy="52" rx="16" ry="9"/>
+          <text x="114" y="48" class="isle-label">TULANG</text>
+          <path class="isle" d="M70 92 C40 110 38 170 62 205 C82 232 120 238 146 216 C170 196 176 150 160 118 C146 90 104 76 70 92Z"/>
+          <path class="isle-g" d="M80 100 C60 120 60 170 78 196 C96 214 124 214 140 196 C156 176 158 140 146 120 C132 100 100 92 80 100Z"/>
+          <ellipse cx="108" cy="140" rx="22" ry="12" fill="#3d8c86" stroke="#e9dcbc" stroke-width="1"/>
+          <text x="58" y="254" class="isle-label">PACIJAN</text>
+          <path d="M168 150 L196 150" stroke="#e9dcbc" stroke-width="2.5" stroke-dasharray="4 3"/>
+          <path class="isle" d="M196 104 C230 84 290 88 312 118 C332 146 322 196 290 214 C256 232 214 222 200 192 C188 166 182 124 196 104Z"/>
+          <path class="isle-g" d="M210 112 C236 98 284 102 300 126 C314 150 306 186 282 200 C256 214 222 206 212 184 C204 162 200 126 210 112Z"/>
+          <text x="238" y="250" class="isle-label">PORO</text>
+          <path class="isle" d="M352 196 C372 186 398 200 400 224 C402 248 380 262 362 254 C344 246 336 210 352 196Z"/>
+          <text x="338" y="184" class="isle-label">PONSON</text>
+          <g id="pins"></g>
+        </svg>
+      </div>
+      <div class="spotcard" id="spotCard"></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="sechead"><div><div class="eyebrow">Guest stories</div><h2>Said by <em>travelers</em></h2></div><p>Sample reviews for the prototype.</p></div>
+    <div class="reviews">
+      <div class="review"><q>We booked the motorbike and homestay in one go. The owner was at Consuelo port before our ferry even docked.</q><div class="who"><i style="background-image:url(img/traveler.jpg)"></i><div><b>Andrea M.</b><span>Manila · 2-day trip</span></div></div></div>
+      <div class="review"><q>The ferry times were right, which is more than I can say for anywhere else online.</q><div class="who"><i style="background-image:url(img/pier.jpg)"></i><div><b>Josh T.</b><span>Cebu City · Day trip</span></div></div></div>
+      <div class="review"><q>Tulang Diot was the clearest water I've swum in. The boatman brought snorkels for all of us.</q><div class="who"><i style="background-image:url(img/terrace.jpg)"></i><div><b>Mika R.</b><span>Davao · 3-day trip</span></div></div></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="sechead"><div><div class="eyebrow">Journal</div><h2>Before you <em>go</em></h2></div><button class="btn line sm" data-go="guides">All stories →</button></div>
+    <div class="grid" id="homeGuides"></div>
+  </div>
+
+  <div class="cta">
+    <img class="photo" src="img/poolnight.jpg" alt="Resort pool lit at dusk under palm trees">
+    <div class="eyebrow" style="color:rgba(255,255,255,.8)">For hosts</div>
+    <h2>Own a resort or rental on Camotes?</h2>
+    <p>List for free and reach travelers before they board. Featured hosts appear first in search.</p>
+    <button class="btn sand" data-go="business">List your business →</button>
+  </div>
+</section>
+
+<!-- STAY -->
+<section data-view="stay" hidden>
+  <div class="pagehead"><img class="photo" src="img/thatch.jpg" alt="Thatched overwater cottages on a turquoise lagoon">
+    <div class="eyebrow">Resorts · homestays · hostels</div><h2>Stays</h2>
+    <p>From cliffside villas to family-run homestays you won't find on the big booking apps.</p></div>
+  <div class="filters">
+    <span id="stayTypes" class="filters"></span>
+    <select id="stayArea" aria-label="Area"><option value="">All areas</option><option>San Francisco</option><option>Poro</option><option>Tudela</option><option>Pilar</option></select>
+    <select id="stayMax" aria-label="Max price"><option value="99999">Any price</option><option value="1500">Up to ₱1,500</option><option value="3000">Up to ₱3,000</option><option value="5000">Up to ₱5,000</option></select>
+  </div>
+  <div class="grid" id="stayGrid"></div>
+</section>
+
+<!-- RIDES -->
+<section data-view="rides" hidden>
+  <div class="pagehead"><img class="photo" src="img/scooter.jpg" alt="Scooter on a palm-lined road">
+    <div class="eyebrow">Motorbikes · tours · boats</div><h2>Experiences</h2>
+    <p>Reserve before you sail. Your driver or boatman meets you at the port.</p></div>
+  <div class="grid" id="rideGrid"></div>
+</section>
+
+<!-- FERRIES -->
+<section data-view="ferries" hidden>
+  <div class="pagehead"><img class="photo" src="img/lagoon.jpg" alt="Aerial view of a turquoise lagoon">
+    <div class="eyebrow">Confirmed daily by port contacts</div><h2>Ferries</h2>
+    <p>Most visitors take the RoRo from Danao to Consuelo. Arrive 45 minutes early on weekends and holidays.</p></div>
+  <div class="board" id="fullBoard"></div>
+  <p class="note">Sample schedule for the prototype. The live site would show who confirmed each route and when, plus PAGASA advisories when trips are cancelled.</p>
+</section>
+
+<!-- TRIPS -->
+<section data-view="trips" hidden>
+  <div class="pagehead"><img class="photo" src="img/palmsunset.jpg" alt="Palm trees against a sunset sky">
+    <div class="eyebrow">Ready-made plans</div><h2>Itineraries</h2>
+    <p>Timed around the ferries from Danao. Add every booking in a plan to your trip in one tap.</p></div>
+  <div class="sechead">
+    <div class="filters" id="tripTabs"></div>
+    <button class="btn sand" id="addPlan">Add this plan's bookings</button>
+  </div>
+  <div class="timeline" id="tripDays"></div>
+</section>
+
+<!-- GUIDES -->
+<section data-view="guides" hidden>
+  <div id="guideList" style="display:grid;gap:48px">
+    <div class="pagehead"><img class="photo" src="img/longbeach.jpg" alt="Long curving beach seen from above">
+      <div class="eyebrow">Journal</div><h2>Before you go</h2>
+      <p>Practical tips from people who live on the islands.</p></div>
+    <div class="grid" id="guideGrid"></div>
+  </div>
+  <div id="guideView" hidden></div>
+</section>
+
+<!-- BUSINESS -->
+<section data-view="business" hidden>
+  <div class="pagehead"><img class="photo" src="img/cliffpool.jpg" alt="Cliffside pool deck overlooking the sea">
+    <div class="eyebrow">For resort, rental and tour owners</div><h2>For hosts</h2>
+    <p>Basic listings are free. Featured hosts show up first. We take 10% only on bookings made through the site.</p></div>
+  <div class="plans" id="plans"></div>
+
+  <div class="block">
+    <div class="sechead"><div><div class="eyebrow">Site owner view</div><h2>Revenue <em>estimate</em></h2></div><p>Move the sliders to see what the site could earn each month.</p></div>
+    <div class="calc">
+      <div style="display:grid;gap:20px">
+        <label><span>Featured listings · ₱499/mo <output id="oF"></output></span><input type="range" id="cF" min="0" max="40" value="12"></label>
+        <label><span>Premium listings · ₱1,499/mo <output id="oP"></output></span><input type="range" id="cP" min="0" max="15" value="3"></label>
+        <label><span>Bookings per month <output id="oB"></output></span><input type="range" id="cB" min="0" max="400" step="10" value="120"></label>
+        <label><span>Average booking value <output id="oV"></output></span><input type="range" id="cV" min="300" max="6000" step="100" value="1800"></label>
+        <label><span>Ads and affiliates / mo <output id="oA"></output></span><input type="range" id="cA" min="0" max="15000" step="500" value="3000"></label>
+      </div>
+      <div style="display:grid;gap:18px;align-content:start">
+        <div class="eyebrow" style="color:#a9bfba">Estimated monthly revenue</div>
+        <div class="total" id="cTotal">₱0</div>
+        <div class="bars" id="cBars"></div>
+        <div class="lines" id="cLines"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="sechead"><div><div class="eyebrow">Free to start</div><h2>List your <em>place</em></h2></div></div>
+    <form class="form" id="listForm">
+      <label>Business name<input id="lfName" required placeholder="e.g. Santiago Bay Cottages"></label>
+      <label>Type<select id="lfType"><option>Resort</option><option>Homestay</option><option>Hostel</option><option>Motorbike rental</option><option>Tour / habal-habal</option><option>Restaurant</option></select></label>
+      <label>Town<select id="lfTown"><option>San Francisco</option><option>Poro</option><option>Tudela</option><option>Pilar</option></select></label>
+      <label>Plan<select id="lfPlan"><option>Basic (free)</option><option>Featured</option><option>Premium</option></select></label>
+      <label>Contact number<input id="lfPhone" inputmode="tel" placeholder="09XX XXX XXXX"></label>
+      <label>Starting price (₱)<input id="lfPrice" type="number" min="0" placeholder="1500"></label>
+      <label class="full">Photos<input id="lfPhotos" type="file" accept="image/*" multiple></label>
+      <label class="full">Short description<textarea id="lfDesc" rows="3" placeholder="What makes your place worth the trip?"></textarea></label>
+      <div class="full"><button class="btn" type="submit">Submit for review →</button></div>
+    </form>
+    <div id="pending"></div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">
+  <div class="foot">
+    <div><p class="meta" style="max-width:36ch;margin:0">Lakaw is Cebuano for travel. A guide and booking platform for the Camotes Islands, built with local hosts.</p></div>
+    <div><h4>Explore</h4><a data-go="stay">Stays</a><a data-go="rides">Experiences</a><a data-go="trips">Itineraries</a></div>
+    <div><h4>Plan</h4><a data-go="ferries">Ferry schedules</a><a data-go="guides">Journal</a><a id="footTrip">My trip</a></div>
+    <div><h4>Hosts</h4><a data-go="business">List your business</a><a data-go="business">Pricing</a></div>
+  </div>
+  <div class="wordmark">Lakaw<em>.</em></div>
+  <div class="fine"><span>Prototype. Listings, prices, ferry times and reviews are samples.</span><span>Photos: free stock images used as placeholders.</span></div>
+</div></footer>
+
+<div id="scrim" class="scrim" hidden></div>
+<aside id="drawer" class="drawer" hidden aria-modal="true" role="dialog"></aside>
+<div id="toast" class="toast" hidden></div>
+
+<script>
+const peso = n => "₱" + Math.round(n).toLocaleString("en-PH");
+const $ = s => document.querySelector(s);
+const COMMISSION = 0.10;
+const IMG = k => `img/${k}.jpg`;
+const ARROW = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>`;
+const HEART = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-9.2-8.6C1.2 8.2 3 4.5 6.6 4.5c2 0 3.4 1.2 5.4 3.2 2-2 3.4-3.2 5.4-3.2 3.6 0 5.4 3.7 3.8 6.9C19 15.6 12 20 12 20z"/></svg>`;
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+const SPOTS = [
+  {n:"Santiago Bay",town:"San Francisco",x:96,y:210,im:"santiago",cls:"t-big",d:"A long white-sand bay on Pacijan. Swim in the morning when the water is glassy."},
+  {n:"Lake Danao",town:"San Francisco",x:108,y:132,im:"lake",cls:"t-tall",d:"Guitar-shaped freshwater lake with kayaks and bamboo rafts by the hour."},
+  {n:"Timubo Cave",town:"San Francisco",x:136,y:178,im:"arch",cls:"",d:"Stairs lead down to a clear pool inside the rock."},
+  {n:"Mangodlong Rock",town:"San Francisco",x:60,y:180,im:"cove",cls:"",d:"Cliff jumping and snorkeling off Pacijan's east coast."},
+  {n:"Tulang Diot",town:"San Francisco",x:92,y:52,im:"bangka",cls:"t-wide",d:"A tiny island with the clearest water on Camotes, a short bangka ride away."},
+  {n:"Busay Falls",town:"Poro",x:236,y:152,im:"falls",cls:"t-tall",d:"A jungle waterfall inland on Poro, best after the rainy season."},
+  {n:"Buho Rock",town:"Poro",x:300,y:118,im:"rocks",cls:"t-tall",d:"Rock pools and a jumping spot near Poro town."},
+  {n:"Pilar",town:"Ponson",x:374,y:226,im:"palmsunset",cls:"t-wide",d:"Quiet island town on Ponson with the best sunsets on Camotes."}
+];
+
+const FERRIES = [
+  {r:"Danao → Consuelo",v:"RoRo",t:"05:30",dur:"2h",f:250},{r:"Danao → Consuelo",v:"RoRo",t:"08:30",dur:"2h",f:250},
+  {r:"Danao → Consuelo",v:"RoRo",t:"11:30",dur:"2h",f:250},{r:"Danao → Consuelo",v:"RoRo",t:"14:30",dur:"2h",f:250},
+  {r:"Danao → Consuelo",v:"RoRo",t:"17:30",dur:"2h",f:250},
+  {r:"Consuelo → Danao",v:"RoRo",t:"06:00",dur:"2h",f:250},{r:"Consuelo → Danao",v:"RoRo",t:"09:00",dur:"2h",f:250},
+  {r:"Consuelo → Danao",v:"RoRo",t:"13:00",dur:"2h",f:250},{r:"Consuelo → Danao",v:"RoRo",t:"16:00",dur:"2h",f:250},
+  {r:"Cebu City → Poro",v:"Fastcraft",t:"07:00",dur:"2h",f:650},{r:"Cebu City → Poro",v:"Fastcraft",t:"14:00",dur:"2h",f:650},
+  {r:"Poro → Cebu City",v:"Fastcraft",t:"10:30",dur:"2h",f:650},
+  {r:"Ormoc → Poro",v:"Pumpboat",t:"09:00",dur:"1h 30m",f:300},{r:"Poro → Ormoc",v:"Pumpboat",t:"13:00",dur:"1h 30m",f:300}
+];
+
+const STAYS = [
+  {id:"s6",n:"Mangodlong Cliff Villas",type:"Resort",area:"San Francisco",p:4800,im:"cliffpool",feat:true,rt:4.9,rv:154,tags:["Cliffside","Infinity pool"]},
+  {id:"s1",n:"Bakhaw Beach Huts",type:"Resort",area:"San Francisco",p:2800,im:"beachhuts",feat:true,rt:4.8,rv:126,tags:["Beachfront","Breakfast"]},
+  {id:"s7",n:"Pilar Lagoon Cottages",type:"Resort",area:"Pilar",p:3900,im:"thatch",feat:true,rt:4.9,rv:71,tags:["Over the water","Quiet"]},
+  {id:"s2",n:"Danao Lakeside Homestay",type:"Homestay",area:"San Francisco",p:1200,im:"houseboat",feat:false,rt:4.9,rv:88,tags:["Lake view","Home-cooked meals"]},
+  {id:"s3",n:"Santiago Palms Resort",type:"Resort",area:"San Francisco",p:3500,im:"poolnight",feat:false,rt:4.6,rv:203,tags:["Pool","Near the bay"]},
+  {id:"s4",n:"Sunset Deck Hostel",type:"Hostel",area:"Poro",p:550,im:"terrace",feat:false,rt:4.4,rv:61,tags:["Dorm beds","Rooftop"]},
+  {id:"s5",n:"Tudela Color Houses",type:"Homestay",area:"Tudela",p:1500,im:"colorhuts",feat:false,rt:4.7,rv:42,tags:["Seaside","Family rooms"]},
+  {id:"s8",n:"Golden Hour Bungalows",type:"Hostel",area:"Tudela",p:700,im:"goasunset",feat:false,rt:4.3,rv:37,tags:["Budget","Backpackers"]}
+];
+
+const RIDES = [
+  {id:"r1",n:"Motorbike rental",unit:"day",p:500,im:"scooter",rt:4.8,rv:312,tags:["Helmet included","Port pickup"],d:"Scooter with a full tank. Bring your driver's license."},
+  {id:"r5",n:"Tulang Diot by bangka",unit:"boat",p:1500,im:"bangka",rt:4.9,rv:176,tags:["Snorkel gear","Up to 6"],d:"Outrigger boat to the clearest water on the islands, about 3 hours."},
+  {id:"r2",n:"Habal-habal island tour",unit:"day",p:1200,im:"rocks",rt:4.9,rv:220,tags:["Driver-guide","6–8 spots"],d:"A local driver takes up to 2 guests around Pacijan and Poro."},
+  {id:"r6",n:"Lake Danao kayak",unit:"hour",p:200,im:"lake",rt:4.5,rv:83,tags:["Life vest"],d:"Single or double kayak on the lake."},
+  {id:"r3",n:"Coastal tricycle tour",unit:"day",p:1800,im:"hills",rt:4.6,rv:94,tags:["Up to 4 guests"],d:"Covered ride along Pacijan's coast and viewpoints."},
+  {id:"r4",n:"Private van tour",unit:"day",p:3500,im:"forestroad",rt:4.7,rv:58,tags:["Up to 10","Aircon"],d:"Both islands, with port pickup and drop-off."}
+];
+
+const TRIPS = {
+  "1 day":{book:["r2"],days:[{h:"Day trip",im:"santiago",s:[["05:30","RoRo from Danao port"],["07:30","Meet your habal-habal driver at Consuelo"],["08:30","Lake Danao"],["10:00","Swim at Timubo Cave"],["12:00","Lunch and swim at Santiago Bay"],["14:30","Mangodlong Rock"],["16:00","Last RoRo back to Danao"]]}]},
+  "2 days":{book:["s2","r1"],days:[
+    {h:"Pacijan",im:"lake",s:[["05:30","RoRo from Danao"],["08:00","Pick up your motorbike at the port"],["09:00","Lake Danao, check in at homestay"],["13:00","Santiago Bay"],["17:30","Sunset at Mangodlong Rock"]]},
+    {h:"Poro",im:"falls",s:[["07:00","Cross the causeway to Poro"],["08:30","Busay Falls"],["10:30","Bukilat Cave"],["12:30","Lunch in Poro town"],["14:00","Return bike, ferry back to Danao"]]}]},
+  "3 days":{book:["s1","r1","r5"],days:[
+    {h:"Arrive",im:"beachhuts",s:[["08:30","RoRo from Danao"],["11:00","Check in, afternoon at Santiago Bay"],["18:00","Dinner on the sand"]]},
+    {h:"Islands",im:"bangka",s:[["07:00","Bangka to Tulang Diot"],["10:30","Snorkel and swim"],["14:00","Timubo Cave"],["16:30","Lake Danao at golden hour"]]},
+    {h:"Poro",im:"rocks",s:[["07:00","Ride to Poro"],["08:30","Bukilat Cave"],["10:30","Buho Rock"],["13:00","RoRo home from Consuelo"]]}]}
+};
+
+const GUIDES = [
+  {id:"g1",t:"How to get to Camotes from Cebu City",im:"lagoon",tag:"Getting there",min:4,
+   p:["Most travelers take a bus or van from Cebu North Bus Terminal to Danao City, about an hour away. From Danao port, the RoRo crosses to Consuelo in San Francisco in about two hours.",
+      "There are also fastcraft trips from Cebu City straight to Poro, which skip the bus but run less often. If you're coming from Leyte, small boats cross from Ormoc.",
+      "Weekends and holidays fill up fast. Get to the port early, bring a valid ID, and expect a small terminal fee on top of the fare."]},
+  {id:"g2",t:"Renting a motorbike on Camotes",im:"scooter",tag:"Getting around",min:3,
+   p:["A motorbike is the cheapest way to see the islands at your own pace. Roads on Pacijan and Poro are mostly paved and quiet.",
+      "Reserve before you sail so the owner meets you at Consuelo port. Check the brakes and lights, take photos of existing scratches, and keep your license with you.",
+      "Gas stations are few outside the town centers, so fill up when you can."]},
+  {id:"g3",t:"The best swimming spots on the islands",im:"santiago",tag:"Things to do",min:5,
+   p:["Santiago Bay has the longest stretch of fine white sand. Go in the morning when the water is calm.",
+      "For something different, swim in the cave pools of Timubo and Bukilat, or jump off the rocks at Mangodlong.",
+      "Tulang Diot has the clearest water on the islands. Hire a bangka from Tulang Daku and bring your own snorkel if you can."]},
+  {id:"g4",t:"What to pack for Camotes",im:"terrace",tag:"Tips",min:2,
+   p:["Bring cash. ATMs are limited, and many small resorts and drivers don't take cards or e-wallets.",
+      "Pack reef-safe sunscreen, a dry bag for boat trips, and water shoes for cave pools and rocky beaches.",
+      "Signal is decent in town centers but drops in some spots, so download your maps before you go."]}
+];
+
+const PLANS = [
+  {n:"Basic",p:0,d:"For trying it out",items:["Listing with photos and prices","Guests send booking requests","10% commission on bookings"]},
+  {n:"Featured",p:499,hot:true,d:"For most resorts and rentals",items:["Everything in Basic","Shown first in search","Featured badge","Home page placement"]},
+  {n:"Premium",p:1499,d:"For hosts who want the most guests",items:["Everything in Featured","Included in itineraries","Monthly visitor report","Monthly social media post"]}
+];
+
+let state = {trip:[],route:"Danao → Consuelo",stayType:"All",plan:"2 days",fav:[],spot:0};
+try{const s=JSON.parse(localStorage.getItem("lakaw3")||"null"); if(s) state={...state,...s};}catch(e){}
+const save=()=>{try{localStorage.setItem("lakaw3",JSON.stringify(state))}catch(e){}};
+function toast(m){const t=$("#toast");t.textContent=m;t.hidden=false;clearTimeout(toast.h);toast.h=setTimeout(()=>t.hidden=true,2600)}
+
+/* nav */
+const VIEWS=[["home","Explore"],["stay","Stays"],["rides","Experiences"],["ferries","Ferries"],["trips","Itineraries"],["guides","Journal"],["business","For hosts"]];
+$("#mnav").innerHTML=VIEWS.map(([k,l])=>`<button data-go="${k}">${l}</button>`).join("");
+function go(v){
+  if(!document.querySelector(`[data-view="${v}"]`)) v="home";
+  document.querySelectorAll("[data-view]").forEach(s=>s.hidden=s.dataset.view!==v);
+  document.querySelectorAll("nav.tabs button,#mnav button").forEach(b=>b.setAttribute("aria-current",b.dataset.go===v));
+  if(v==="guides"){$("#guideView").hidden=true;$("#guideList").hidden=false}
+  window.scrollTo({top:0});
+  try{history.replaceState(null,"","#"+v)}catch(e){}
+}
+document.addEventListener("click",e=>{const g=e.target.closest("[data-go]"); if(g){e.preventDefault();go(g.dataset.go)}});
+
+/* home */
+function renderHome(){
+  $("#bento").innerHTML=SPOTS.map((s,i)=>`<button class="tile ${s.cls}" data-spot="${i}"><img class="photo" src="${IMG(s.im)}" alt="" loading="lazy">
+   <div class="in"><span class="pill glass" style="justify-self:start;align-self:start">${s.town}</span><div class="tt"><div><h3>${s.n}</h3>${s.cls?`<p>${s.d}</p>`:""}</div><span class="arrow">${ARROW}</span></div></div></button>`).join("");
+  $("#homeStays").innerHTML=STAYS.slice(0,5).map(s=>card(s,"stay")).join("");
+  $("#xlist").innerHTML=RIDES.slice(1,4).map(r=>`<button class="xitem" data-book="${r.id}"><img class="photo" src="${IMG(r.im)}" alt=""><span><b>${r.n}</b><span class="meta">${r.tags.join(" · ")}</span></span><span class="pr">${peso(r.p)}<span class="meta"> /${r.unit}</span></span></button>`).join("");
+  $("#homeGuides").innerHTML=GUIDES.slice(0,3).map(guideCard).join("");
+  $("#rideGrid").innerHTML=RIDES.map(r=>card(r,"ride")).join("");
+}
+document.addEventListener("click",e=>{const d=e.target.closest("[data-spot]");if(d){showSpot(+d.dataset.spot);$("#spotCard").scrollIntoView({behavior:"smooth",block:"center"})}});
+$("#pins").innerHTML = SPOTS.map((s,i)=>`<g class="pin" tabindex="0" data-i="${i}" aria-label="${s.n}"><circle class="o" cx="${s.x}" cy="${s.y}" r="10"/><circle class="i" cx="${s.x}" cy="${s.y}" r="6"/></g>`).join("");
+function showSpot(i){state.spot=i;const s=SPOTS[i];
+  document.querySelectorAll(".pin").forEach(p=>p.classList.toggle("on",+p.dataset.i===i));
+  $("#spotCard").innerHTML=`<img class="photo" src="${IMG(s.im)}" alt="${s.n}"><div class="body"><span class="pill glass" style="justify-self:start">${s.town}</span><h3>${s.n}</h3><p>${s.d}</p></div>`}
+$("#pins").addEventListener("click",e=>{const p=e.target.closest(".pin");if(p)showSpot(+p.dataset.i)});
+$("#pins").addEventListener("keydown",e=>{if(e.key==="Enter"){const p=e.target.closest(".pin");if(p)showSpot(+p.dataset.i)}});
+$("#heroSearch").addEventListener("submit",e=>{e.preventDefault();$("#stayArea").value=$("#hsArea").value;state.stayType="All";renderStays();go("stay")});
+
+/* ferries */
+function minutes(t){const[h,m]=t.split(":").map(Number);return h*60+m}
+function phNow(){return new Date(Date.now()+(8*60+new Date().getTimezoneOffset())*60000)}
+function nowMin(){const d=phNow();return d.getHours()*60+d.getMinutes()}
+const flap=t=>{const[h,m]=t.split(":");return `<span class="flap"><b>${h[0]}</b><b>${h[1]}</b><span>:</span><b>${m[0]}</b><b>${m[1]}</b></span>`};
+function boardHTML(limit){
+  const routes=[...new Set(FERRIES.map(f=>f.r))];
+  const now=nowMin(); let rows=FERRIES.filter(f=>f.r===state.route).sort((a,b)=>minutes(a.t)-minutes(b.t));
+  const next=rows.find(f=>minutes(f.t)>now);
+  if(limit){const up=rows.filter(f=>minutes(f.t)>now);rows=(up.length?up:rows).slice(0,limit)}
+  const d=phNow();const clock=String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0");
+  return `<div class="board-head"><h3>Departures</h3><span class="clock">${clock} Philippine time</span></div>
+  <div class="routes">${routes.map(r=>`<button aria-pressed="${r===state.route}" data-r="${r}">${r}</button>`).join("")}</div>
+  <div class="boardscroll"><table><thead><tr><th>Time</th><th>Route</th><th>Vessel</th><th>Trip</th><th>Fare</th><th>Status</th></tr></thead><tbody>
+  ${rows.map(f=>{const st=f===next?'<span class="st next">Boarding soon</span>':minutes(f.t)>now?'<span class="st on">On time</span>':'<span class="st gone">Departed</span>';
+    return `<tr><td>${flap(f.t)}</td><td>${f.r}</td><td>${f.v}</td><td>${f.dur}</td><td>${peso(f.f)}</td><td>${st}</td></tr>`}).join("")}</tbody></table></div>`;
+}
+function renderFerries(){
+  $("#homeBoard").innerHTML=boardHTML(3);$("#fullBoard").innerHTML=boardHTML(0);
+  const nx=FERRIES.filter(f=>f.r==="Danao → Consuelo").find(f=>minutes(f.t)>nowMin());$("#nextFerry").textContent=nx?nx.t:"05:30";
+}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-r]");if(b){state.route=b.dataset.r;save();renderFerries()}});
+setInterval(renderFerries,30000);
+
+/* cards */
+function card(x,kind){
+  const unit=kind==="stay"?"night":x.unit; const fav=state.fav.includes(x.id);
+  return `<article class="card"><div class="ph"><img class="photo" src="${IMG(x.im)}" alt="${esc(x.n)}" loading="lazy">
+   <div class="tl">${x.feat?'<span class="feat">Featured</span>':''}<button class="heart" data-fav="${x.id}" aria-pressed="${fav}" aria-label="Save ${esc(x.n)}">${HEART}</button></div>
+   <div class="bl"><span class="pill glass">${kind==="stay"?x.area:x.tags[0]}</span><button class="arrow" data-book="${x.id}" aria-label="Book ${esc(x.n)}">${ARROW}</button></div></div>
+   <div class="info"><div class="row1"><h3>${x.n}</h3><span class="rate">${x.rt}</span></div>
+   <div class="meta">${kind==="stay"?x.type+" · "+x.tags.join(" · "):x.d}</div>
+   <div class="cardfoot"><span class="price"><b>${peso(x.p)}</b> <span class="meta">/ ${unit}</span></span><button class="btn sm" data-book="${x.id}">Book</button></div></div></article>`;
+}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-fav]");if(!b)return;e.stopPropagation();const id=b.dataset.fav;
+  state.fav=state.fav.includes(id)?state.fav.filter(f=>f!==id):[...state.fav,id];save();
+  document.querySelectorAll(`[data-fav="${id}"]`).forEach(h=>h.setAttribute("aria-pressed",state.fav.includes(id)));
+  toast(state.fav.includes(id)?"Saved to your list":"Removed from your list")});
+function renderStays(){
+  const types=["All","Resort","Homestay","Hostel"];
+  $("#stayTypes").innerHTML=types.map(t=>`<button aria-pressed="${t===state.stayType}" data-t="${t}">${t}</button>`).join("");
+  const area=$("#stayArea").value, max=+$("#stayMax").value;
+  const list=STAYS.filter(s=>(state.stayType==="All"||s.type===state.stayType)&&(!area||s.area===area)&&s.p<=max).sort((a,b)=>b.feat-a.feat);
+  $("#stayGrid").innerHTML=list.length?list.map(s=>card(s,"stay")).join(""):`<p class="meta">No places match those filters. Try a higher price or another area.</p>`;
+}
+$("#stayTypes").addEventListener("click",e=>{const b=e.target.closest("button");if(b){state.stayType=b.dataset.t;save();renderStays()}});
+$("#stayArea").onchange=renderStays; $("#stayMax").onchange=renderStays;
+
+/* itineraries */
+function renderTrips(){
+  $("#tripTabs").innerHTML=Object.keys(TRIPS).map(k=>`<button aria-pressed="${k===state.plan}" data-k="${k}">${k}</button>`).join("");
+  $("#tripDays").innerHTML=TRIPS[state.plan].days.map((d,i)=>`<div class="day"><div class="ph"><img class="photo" src="${IMG(d.im)}" alt=""><h3><em>Day ${i+1}</em> · ${d.h}</h3></div><ol>${d.s.map(([t,a])=>`<li><b>${t}</b><i></i><span>${a}</span></li>`).join("")}</ol></div>`).join("");
+}
+$("#tripTabs").addEventListener("click",e=>{const b=e.target.closest("button");if(b){state.plan=b.dataset.k;save();renderTrips()}});
+
+/* guides */
+const guideCard=g=>`<article class="card"><div class="ph" style="aspect-ratio:4/3"><img class="photo" src="${IMG(g.im)}" alt="" loading="lazy"><div class="tl"><span class="pill glass">${g.tag}</span></div></div>
+ <div class="info"><h3>${g.t}</h3><div class="cardfoot"><span class="meta">${g.min} min read</span><button class="btn line sm" data-guide="${g.id}">Read →</button></div></div></article>`;
+$("#guideGrid").innerHTML=GUIDES.map(guideCard).join("");
+document.addEventListener("click",e=>{const b=e.target.closest("[data-guide]");if(!b)return;const g=GUIDES.find(x=>x.id===b.dataset.guide);
+ go("guides");$("#guideList").hidden=true;const v=$("#guideView");v.hidden=false;
+ v.innerHTML=`<div class="article"><div><button class="btn line sm" id="backG">← All stories</button></div><div class="eyebrow">${g.tag} · ${g.min} min read</div><h2>${g.t}</h2>
+ <div class="ph"><img class="photo" src="${IMG(g.im)}" alt=""></div>${g.p.map(p=>`<p>${p}</p>`).join("")}
+ <div class="slot">Ad and affiliate slot: travel insurance, bus tickets or snorkel gear links would go here.</div></div>`;
+ $("#backG").onclick=()=>{v.hidden=true;$("#guideList").hidden=false}; window.scrollTo({top:0});});
+
+/* booking */
+const ALL={};[...STAYS,...RIDES].forEach(x=>ALL[x.id]=x);
+function openDrawer(img,html){const d=$("#drawer");d.innerHTML=`<button class="x" aria-label="Close" id="dx">×</button>${img?`<div class="dph"><img class="photo" src="${img}" alt=""></div>`:'<div style="height:64px;flex-shrink:0"></div>'}<div class="dbody">${html}</div>`;d.hidden=false;$("#scrim").hidden=false;d.scrollTop=0;$("#dx").onclick=closeDrawer}
+function closeDrawer(){$("#drawer").hidden=true;$("#scrim").hidden=true}
+$("#scrim").onclick=closeDrawer; document.addEventListener("keydown",e=>{if(e.key==="Escape")closeDrawer()});
+function tomorrow(){const d=phNow();d.setDate(d.getDate()+1);return d.toISOString().slice(0,10)}
+function newRef(){return "LC-"+Math.random().toString(36).slice(2,7).toUpperCase()}
+function openBook(id){
+  const x=ALL[id]; const isStay=id[0]==="s"; const unit=isStay?"night":x.unit;
+  openDrawer(IMG(x.im),`<div class="eyebrow">${isStay?x.type+" · "+x.area:"Experience"}</div><h2>${x.n}</h2>
+  <div class="rate">${x.rt} <span class="meta">· ${x.rv} reviews</span></div>
+  <form class="form" id="bf">
+    <label>${isStay?"Check-in":"Date"}<input type="date" id="bDate" value="${$("#hsDate").value||tomorrow()}" required></label>
+    <label>${unit==="hour"?"Hours":unit==="night"?"Nights":unit==="boat"?"Boats":"Days"}<input type="number" id="bQty" min="1" max="30" value="${unit==="hour"?2:1}"></label>
+    <label>Guests<input type="number" id="bGuests" min="1" max="12" value="2"></label>
+    <label>Meet at<select id="bMeet"><option>Consuelo port</option><option>Poro port</option><option>My hotel</option></select></label>
+    <label class="full">Your name<input id="bName" required placeholder="Juan dela Cruz"></label>
+  </form>
+  <div class="sum" id="bSum"></div>
+  <button class="btn" id="bGo" style="justify-content:center">Add to my trip</button>
+  <p class="meta" style="margin:0">Pay the host on arrival. The live site would take a deposit through GCash or card.</p>`);
+  const calc=()=>{const q=Math.max(1,+$("#bQty").value||1);const sub=x.p*q;
+    $("#bSum").innerHTML=`<div><span>${peso(x.p)} × ${q} ${unit}${q>1?"s":""}</span><span>${peso(sub)}</span></div>
+    <div><span>Booking fee</span><span>₱0</span></div><div class="tot"><span>Total</span><span>${peso(sub)}</span></div>
+    <div class="meta"><span>Site commission (10%, paid by host)</span><span>${peso(sub*COMMISSION)}</span></div>`;return sub};
+  calc(); $("#bQty").oninput=calc;
+  $("#bGo").onclick=()=>{ if(!$("#bName").value.trim()){$("#bName").focus();toast("Add your name so the host knows who's coming");return}
+    const sub=calc(); state.trip.push({ref:newRef(),id,n:x.n,date:$("#bDate").value,qty:+$("#bQty").value,unit,total:sub,meet:$("#bMeet").value,who:$("#bName").value.trim()});
+    save();updateCount();closeDrawer();toast("Added to your trip");};
+}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-book]");if(b){e.stopPropagation();openBook(b.dataset.book)}});
+$("#addPlan").onclick=()=>{const nights=TRIPS[state.plan].days.length;
+  TRIPS[state.plan].book.forEach(id=>{const x=ALL[id];const isStay=id[0]==="s";const unit=isStay?"night":x.unit;
+    const qty=isStay?Math.max(1,nights-1):unit==="day"?nights:1;
+    state.trip.push({ref:newRef(),id,n:x.n,date:tomorrow(),qty,unit,total:x.p*qty,meet:"Consuelo port",who:"Guest"});});
+  save();updateCount();toast(TRIPS[state.plan].book.length+" bookings added to your trip");};
+
+function updateCount(){$("#tripCount").textContent=state.trip.length}
+function showTrip(){
+  const t=state.trip; const tot=t.reduce((a,b)=>a+b.total,0);
+  openDrawer(IMG("palmsunset"),`<div class="eyebrow">Your bookings</div><h2>My trip</h2>
+  ${t.length?t.map((b,i)=>{const x=ALL[b.id];return `<div class="booking"><img class="photo" src="${IMG(x.im)}" alt=""><div><b>${esc(b.n)}</b><span class="meta">${b.date} · ${b.qty} ${b.unit}${b.qty>1?"s":""} · ${b.meet}</span>
+   <span class="ref">${b.ref} · ${esc(b.who)}</span><span style="display:flex;justify-content:space-between;align-items:center;margin-top:4px"><b>${peso(b.total)}</b><button class="btn line sm" data-rm="${i}">Remove</button></span></div></div>`}).join("")
+   +`<div class="sum"><div class="tot"><span>Trip total</span><span>${peso(tot)}</span></div><div class="meta"><span>Site earns (10%)</span><span>${peso(tot*COMMISSION)}</span></div></div>`
+   :`<p class="meta">No bookings yet. Book a stay, motorbike or tour and it shows up here with a reference number for your host.</p><button class="btn" data-go="stay" id="emptyGo">Find a place to stay</button>`}`);
+  const eg=$("#emptyGo"); if(eg) eg.addEventListener("click",closeDrawer);
+  $("#drawer").querySelectorAll("[data-rm]").forEach(b=>b.onclick=()=>{state.trip.splice(+b.dataset.rm,1);save();updateCount();showTrip()});
+}
+$("#myTrip").onclick=showTrip; $("#footTrip").onclick=showTrip;
+
+/* business */
+$("#plans").innerHTML=PLANS.map(p=>`<div class="plan ${p.hot?"hot":""}">${p.hot?'<span class="feat" style="align-self:start">Most picked</span>':''}<h3>${p.n}</h3><div class="meta">${p.d}</div>
+ <div><span class="amount">${p.p?peso(p.p):"Free"}</span> ${p.p?'<span class="meta">/ month</span>':''}</div><ul>${p.items.map(i=>`<li>${i}</li>`).join("")}</ul>
+ <button class="btn ${p.hot?"sand":"line"} sm" style="margin-top:auto;align-self:start" data-plan="${p.n}">Choose ${p.n}</button></div>`).join("");
+document.addEventListener("click",e=>{const b=e.target.closest("[data-plan]");if(!b)return;const m={Basic:"Basic (free)",Featured:"Featured",Premium:"Premium"};$("#lfPlan").value=m[b.dataset.plan];$("#listForm").scrollIntoView({behavior:"smooth",block:"center"});setTimeout(()=>$("#lfName").focus(),400)});
+function calc(){
+  const F=+$("#cF").value,P=+$("#cP").value,B=+$("#cB").value,V=+$("#cV").value,A=+$("#cA").value;
+  $("#oF").textContent=F;$("#oP").textContent=P;$("#oB").textContent=B;$("#oV").textContent=peso(V);$("#oA").textContent=peso(A);
+  const parts=[["Featured listings",F*499,"#f3dcae"],["Premium listings",P*1499,"#e5604a"],["Booking commissions (10%)",B*V*COMMISSION,"#5fc9b8"],["Ads and affiliates",A,"#8fa8ff"]];
+  const sum=parts.reduce((a,p)=>a+p[1],0);const tot=sum||1;
+  $("#cTotal").textContent=peso(sum);
+  $("#cBars").innerHTML=parts.map(p=>`<span style="width:${p[1]/tot*100}%;background:${p[2]}"></span>`).join("");
+  $("#cLines").innerHTML=parts.map(p=>`<div><span><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${p[2]};margin-right:10px"></span>${p[0]}</span><span>${peso(p[1])}</span></div>`).join("");
+}
+["#cF","#cP","#cB","#cV","#cA"].forEach(s=>$(s).addEventListener("input",calc));
+$("#listForm").addEventListener("submit",e=>{e.preventDefault();
+  const n=$("#lfName").value.trim(); if(!n)return; const files=$("#lfPhotos").files;
+  const img=files&&files[0]?URL.createObjectURL(files[0]):IMG("beachhuts");
+  $("#pending").innerHTML=`<article class="card" style="max-width:340px"><div class="ph" style="aspect-ratio:4/3"><img class="photo" src="${img}" alt=""><div class="tl"><span class="feat" style="background:#e5604a;color:#fff">Waiting for review</span></div></div>
+   <div class="info"><h3>${esc(n)}</h3><div class="meta">${esc($("#lfType").value)} · ${esc($("#lfTown").value)} · ${esc($("#lfPlan").value)}</div><p class="meta" style="margin:4px 0 0">On the live site, the team checks the listing and calls the host within 2 days.</p></div></article>`;
+  e.target.reset(); toast("Listing submitted for review");});
+
+/* boot */
+renderHome();showSpot(state.spot<SPOTS.length?state.spot:0);renderFerries();renderStays();renderTrips();calc();updateCount();
+go((location.hash||"#home").slice(1));
+</script>
+
+</body>
+</html>
